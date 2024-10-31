@@ -136,20 +136,20 @@ img = leer_imagen(ruta_imagen)
 
 img.show()
 
-# Obtener información de la imagen
+# información de la imagen
 num_canales, dimensiones = obtener_info_imagen(img)
 print(f'Número de canales: {num_canales}')
 print(f'Dimensiones: {dimensiones}')
 
-# Convertir la imagen a un arreglo de NumPy
+# arreglo de NumPy
 arreglo_img = imagen_a_arreglo(img)
 
-# Calcular estadísticas de intensidad
+# estadísticas de intensidad
 promedio, desviacion_estandar = estadisticas_intensidad(arreglo_img)
 print(f'Promedio de intensidad: {promedio}')
 print(f'Desviación estándar de intensidad: {desviacion_estandar}')
 
-# Calcular estadísticas por canal
+# estadísticas por canal
 estadisticas_canales = estadisticas_por_canal(arreglo_img)
 for canal, stats in estadisticas_canales.items():
     print(f'{canal} - Promedio: {stats["Promedio"]}, Desviación Estándar: {stats["Desviación Estándar"]}')
