@@ -129,7 +129,7 @@ def estadisticas_por_canal(arreglo_img):
 
 
 # Ruta de la imagen
-ruta_imagen = 'data\imagen0.png'
+ruta_imagen = 'data/imagen0.png'
 
 # Leer la imagen
 img = leer_imagen(ruta_imagen)
