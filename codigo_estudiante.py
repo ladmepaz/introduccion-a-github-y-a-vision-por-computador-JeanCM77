@@ -50,7 +50,7 @@ def obtener_info_imagen(img):
         num_canales = len(modo)  # Otros modos de imagen
     
     # Obtener las dimensiones de la imagen
-    dimensiones = None  # Ingresa valor aquí para obtener (ancho, alto)
+    dimensiones = img.size  # Ingresa valor aquí para obtener (ancho, alto)
     
     return num_canales, dimensiones
 
@@ -115,7 +115,7 @@ def estadisticas_por_canal(arreglo_img):
         resultados = {}
         num_canales = arreglo_img.shape[2]
         
-        for canal in num_canales : # Insertar código aquí
+        for canal in range(num_canales): # Insertar código aquí
             promedio = np.mean(arreglo_img[:, :, canal])
             desviacion_estandar = np.std(arreglo_img[:, :, canal])
             resultados[f'Canal_{canal+1}'] = {
@@ -126,3 +126,30 @@ def estadisticas_por_canal(arreglo_img):
         raise ValueError("El arreglo de imagen debe tener 2 o 3 dimensiones.")
     
     return resultados
+
+
+# Ruta de la imagen
+ruta_imagen = 'C:\\Users\\Estudiantes\\Documents\\GitHub\\introduccion-a-github-y-a-vision-por-computador-JeanCM77\\data\\imagen0.png'
+
+# Leer la imagen
+img = leer_imagen(ruta_imagen)
+
+img.show()
+
+# Obtener información de la imagen
+num_canales, dimensiones = obtener_info_imagen(img)
+print(f'Número de canales: {num_canales}')
+print(f'Dimensiones: {dimensiones}')
+
+# Convertir la imagen a un arreglo de NumPy
+arreglo_img = imagen_a_arreglo(img)
+
+# Calcular estadísticas de intensidad
+promedio, desviacion_estandar = estadisticas_intensidad(arreglo_img)
+print(f'Promedio de intensidad: {promedio}')
+print(f'Desviación estándar de intensidad: {desviacion_estandar}')
+
+# Calcular estadísticas por canal
+estadisticas_canales = estadisticas_por_canal(arreglo_img)
+for canal, stats in estadisticas_canales.items():
+    print(f'{canal} - Promedio: {stats["Promedio"]}, Desviación Estándar: {stats["Desviación Estándar"]}')
